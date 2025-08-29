@@ -1,0 +1,1059 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a316cb93c70b3124d959757357bb6d4f, type: 3}
+  m_Name: word
+  m_EditorClassIdentifier: 
+  datas:
+  - name: Column1
+    wordLength: 0
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "[\u30A2\u30AF\u30B7\u30E7\u30F3\u30D1\u30FC\u30C8]\u30EF\u30FC\u30C9\u6848"
+    wordLength: 0
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u76EE\u6B21"
+    wordLength: 0
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u2460\u30EF\u30FC\u30C9\u6848"
+    wordLength: 0
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u2460\u30EF\u30FC\u30C9\u6848"
+    wordLength: 0
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30EF\u30FC\u30C9"
+    wordLength: 0
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30D5\u30A9\u30FC\u30C1\u30E5\u30F3"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30E9\u30C3\u30AD\u30FC"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30A8\u30EC\u30AC\u30F3\u30C8"
+    wordLength: 5
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30E9\u30A4\u30C8\u30EA\u30F3\u30B0"
+    wordLength: 6
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30ED\u30F3\u30EA\u30CD\u30B9"
+    wordLength: 5
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30CF\u30FC\u30C8"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u5730\u7344"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u696D\u706B"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30D0\u30FC\u30CB\u30F3\u30B0"
+    wordLength: 5
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30D8\u30EB"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30D5\u30EC\u30A4\u30E0"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30D5\u30A1\u30F3\u30C8\u30E0"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30EF\u30FC\u30EB\u30C9"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30EA\u30FC\u30D1\u30FC"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30C0\u30FC\u30AF\u30CD\u30B9"
+    wordLength: 5
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30A4\u30F3\u30D5\u30A3\u30CB\u30C6\u30A3"
+    wordLength: 5
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30A4\u30F3\u30D1\u30AF\u30C8"
+    wordLength: 5
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u6700\u5F37"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30B2\u30A4\u30DC\u30EB\u30B0"
+    wordLength: 5
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30CB\u30EB\u30F4\u30A1\u30FC\u30CA"
+    wordLength: 5
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u9ED2\u708E"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u6C38\u9060"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u6F06\u9ED2"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30C0\u30A4\u30A2\u30E2\u30F3\u30C9"
+    wordLength: 6
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30A8\u30BF\u30FC\u30CA\u30EB"
+    wordLength: 5
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30B7\u30E3\u30A4\u30CB\u30FC\u30B9\u30DE\u30A4\u30EB"
+    wordLength: 8
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30A8\u30AF\u30B9\u30EA\u30FC\u30E0"
+    wordLength: 6
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30B5\u30F3\u30C0\u30FC"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30AD\u30E5\u30A2"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30B7\u30E7\u30EB\u30C0\u30FC"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30B5\u30CE\u30D0\u30D3\u30C3\u30C1"
+    wordLength: 5
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30BF\u30A4\u30AC\u30FC"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30A2\u30C3\u30D7\u30BF\u30FC\u30F3\u30C9"
+    wordLength: 6
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30D3\u30FC\u30C8"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30A6\u30A3\u30F3\u30AF"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30CF\u30EA\u30B1\u30FC\u30F3"
+    wordLength: 5
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u5965\u7FA9"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u98A8\u6797\u706B\u5C71"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30C7\u30B9\u30C6\u30CB\u30FC"
+    wordLength: 5
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u7206"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u6012\u6D9B"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u6839\u6027"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u65CB\u98A8"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u672C\u6C17"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30BA\u30D0\u30D0"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u685C"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u5929\u4E0A"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u5929\u4E0B"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u6F22"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u534D"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30AC\u30C3\u30C4"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u6975\u307F"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u7ADC\u9A30\u864E\u95D8"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30AD\u30E9\u30FC"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30BD\u30A6\u30EB"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30C6\u30E9\u30FC"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30D1\u30A4\u30EB"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30C9\u30E9\u30A4\u30D0\u30FC"
+    wordLength: 5
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30C7\u30B9\u30C8\u30ED\u30A4"
+    wordLength: 5
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u7A32\u59BB"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30B9\u30D1\u30FC\u30AF"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u96FB\u52D5"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30CF\u30A4\u30D1\u30FC"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30D5\u30EC\u30A2"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u592A\u967D"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30D0\u30B9\u30BF\u30FC"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30C7\u30D3\u30EB"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u2605"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30B9\u30DA\u30B7\u30E3\u30EB"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30E6\u30CB\u30C3\u30C8"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30C8\u30FC\u30EB"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30BC\u30A6\u30B9"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30EC\u30AF\u30A4\u30A8\u30E0"
+    wordLength: 5
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30DE\u30A6\u30F3\u30C6\u30F3"
+    wordLength: 5
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30B9\u30D7\u30E9\u30C3\u30B7\u30E5"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30B9\u30D4\u30FC\u30C9"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30B9\u30BF\u30FC"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30C8\u30A5\u30A4\u30F3\u30AF\u30EB"
+    wordLength: 5
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30C0\u30A4\u30CA\u30DE\u30A4\u30C8"
+    wordLength: 6
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30C0\u30A4\u30CA\u30DF\u30C3\u30AF"
+    wordLength: 5
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30B9\u30B3\u30FC\u30D4\u30AA\u30F3"
+    wordLength: 6
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30D6\u30E9\u30C3\u30C9"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u3082\u3063\u3061\u308A"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30E9\u30A4\u30C8\u30CB\u30F3\u30B0"
+    wordLength: 6
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u9F8D"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30C9\u30E9\u30B4\u30F3"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u6CE2\u52D5"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30B5\u30A4\u30B3"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30AF\u30E9\u30C3\u30B7\u30E3\u30FC"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30C9\u30E9\u30A4\u30D6"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30D5\u30A1\u30A4\u30CA\u30EB"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30BC\u30ED"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30B8\u30E3\u30C3\u30B8"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30E1\u30AC"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30DA\u30BF"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30D3\u30C3\u30B0"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30D3\u30C3\u30B0\u30D0\u30F3"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30D5\u30A1\u30EB\u30B3\u30F3"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30EC\u30C3\u30C9"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30B9\u30FC\u30D1\u30FC"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30D6\u30EC\u30A4\u30AF"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30D6\u30EC\u30A4\u30D6"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30C1\u30E3\u30FC\u30B8"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30C8\u30E9\u30A4"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30DE\u30AD\u30B7\u30DE\u30E0"
+    wordLength: 5
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u6708\u5149"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30CF\u30C3\u30B9\u30EB"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30D3\u30C3\u30AF\u30D0\u30F3"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u9CF3\u51F0"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u5149"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u96F7"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30AE\u30AC\u30F3\u30C6\u30A3\u30C3\u30AF"
+    wordLength: 5
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30CF\u30A4"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u5FF5\u52D5"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u5929\u8987"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u795E"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u5929\u5730"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u771F"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u7121\u53CC"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u7121\u60F3"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30B6"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u87BA\u65CB"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30B9\u30DA\u30B7\u30A6\u30E0"
+    wordLength: 5
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30D8\u30D6\u30F3"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30C8\u30EB\u30CD\u30FC\u30C9"
+    wordLength: 5
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u7834\u58CA"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30DE\u30C3\u30AF\u30B9"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u795E\u901F"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u9583"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u7259"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u7121\u9650"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u9EC4\u6CC9"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u8F5F"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u7121"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u84EE"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u9B3C"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u70C8"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u821E"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u5203"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u4FEE\u7F85"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u7834"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u51A5"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u9ED2"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30AB\u30AA\u30B9"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30C7\u30B9"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30B7\u30E3\u30C9\u30A6"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30E1\u30C6\u30AA"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30CE\u30F4\u30A1"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30B0\u30E9\u30D3\u30C6\u30A3"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30AF\u30ED\u30CE\u30B9"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u5922"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u865A\u7A7A"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u7D76\u671B"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30C7\u30C3\u30C8"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u661F"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u7834\u6EC5"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30AE\u30EB\u30C6\u30A3"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u904B\u547D"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u7121\u6575"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u8D85\u4EBA"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30D1\u30EC\u30FC\u30C9"
+    wordLength: 4
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u7D42\u7109"
+    wordLength: 2
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30AF\u30EC\u30BB\u30F3\u30C8"
+    wordLength: 5
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30E1\u30ED\u30C7\u30A3"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: Z
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u03B1"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u03A9"
+    wordLength: 1
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
+  - name: "\u30D1\u30EF\u30FC"
+    wordLength: 3
+    attackPower: 0
+    defensePower: 0
+    mobility: 0
+    rate: 0
