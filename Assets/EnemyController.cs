@@ -164,7 +164,7 @@ public class EnemyController : MonoBehaviour
 
         // x方向のどちらに逃げるべきかを計算
         Vector3 directionFromPlayer = transform.position - _Player.position;
-        int targetDirection = directionFromPlayer.x > 0 ? 1 : -1;
+        int targetDirection = directionFromPlayer.x > 0 ? -1 : 1;
 
         // 進んでいる方向にプレイヤーがいたらUターンさせる
         if (_MovingDirection != targetDirection)
