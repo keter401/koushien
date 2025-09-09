@@ -18605,6 +18605,18 @@ PrefabInstance:
       propertyPath: _Player
       value: 
       objectReference: {fileID: 477126639}
+    - target: {fileID: 3460853908548121370, guid: aca5d88847751b248a2430b00d2f0f9f, type: 3}
+      propertyPath: _EscapePoints.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3460853908548121370, guid: aca5d88847751b248a2430b00d2f0f9f, type: 3}
+      propertyPath: '_EscapePoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 290358542}
+    - target: {fileID: 4088492726556225769, guid: aca5d88847751b248a2430b00d2f0f9f, type: 3}
+      propertyPath: m_Constraints
+      value: 88
+      objectReference: {fileID: 0}
     - target: {fileID: 9170596191708602001, guid: aca5d88847751b248a2430b00d2f0f9f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.711383
