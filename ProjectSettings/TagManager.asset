@@ -12,6 +12,7 @@ TagManager:
   - Attack
   - EnemySensor
   - GroundEdge
+  - Exit
   layers:
   - Default
   - TransparentFX
