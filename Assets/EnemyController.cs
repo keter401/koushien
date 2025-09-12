@@ -131,7 +131,7 @@ public class EnemyController : MonoBehaviour
         //transform.position += movement;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         // もし視界になにか入っていたら
         // 現在のステートに処理を投げる
