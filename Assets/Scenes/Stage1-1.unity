@@ -19526,6 +19526,22 @@ PrefabInstance:
       value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3460853908548121370, guid: aca5d88847751b248a2430b00d2f0f9f, type: 3}
+      propertyPath: _FleeSpeedRatio
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3460853908548121370, guid: aca5d88847751b248a2430b00d2f0f9f, type: 3}
+      propertyPath: _PlayerMoveSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3460853908548121370, guid: aca5d88847751b248a2430b00d2f0f9f, type: 3}
+      propertyPath: _EscapeSpeedRatio
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3460853908548121370, guid: aca5d88847751b248a2430b00d2f0f9f, type: 3}
+      propertyPath: _WanderSpeedRatio
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3460853908548121370, guid: aca5d88847751b248a2430b00d2f0f9f, type: 3}
       propertyPath: _EscapePoints.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -19533,6 +19549,10 @@ PrefabInstance:
       propertyPath: '_EscapePoints.Array.data[0]'
       value: 
       objectReference: {fileID: 290358542}
+    - target: {fileID: 4088492726556225769, guid: aca5d88847751b248a2430b00d2f0f9f, type: 3}
+      propertyPath: m_Mass
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4088492726556225769, guid: aca5d88847751b248a2430b00d2f0f9f, type: 3}
       propertyPath: m_Constraints
       value: 88
