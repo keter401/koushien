@@ -80,6 +80,9 @@ public class EnemyController : MonoBehaviour
     public bool ShouldEscape => TotalItemCount >= _EscapeThreshold;
     public Transform NearestEscapePoint => GetNearestEscapePoint();
 
+    private Rigidbody rb;
+    private bool isInExit = false;
+
     void Start()
     {
         // プレイヤーとカメラの参照を設定
@@ -93,6 +96,8 @@ public class EnemyController : MonoBehaviour
 
         // 初期状態をうろうろ状態に設定
         TransitionToState(_WanderState);
+
+        rb = GetComponent<Rigidbody>();
     }
 
     void Awake()
@@ -121,8 +126,9 @@ public class EnemyController : MonoBehaviour
     // 移動処理
     public void Move()
     {
-        Vector3 movement = Vector3.right * _MovingDirection * CurrentMoveSpeed * Time.deltaTime;
-        transform.position += movement;
+        Vector3 movement = Vector3.right * _MovingDirection * CurrentMoveSpeed * Time.fixedDeltaTime;
+        rb.linearVelocity = new Vector3(movement.x, rb.linearVelocity.y, rb.linearVelocity.z);
+        //transform.position += movement;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -130,12 +136,20 @@ public class EnemyController : MonoBehaviour
         // もし視界になにか入っていたら
         // 現在のステートに処理を投げる
         _CurrentState?.OnVisionTrigger(other, this);
+
+        if (other.gameObject.CompareTag("Exit")) {
+            isInExit = true;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         // 現在のステートに処理を投げる
         _CurrentState?.OnEnemyCollision(collision.collider, this);
+
+        if(collision.gameObject.CompareTag("Exit")) {
+            isInExit = false;
+        }
     }
 
     private void OnBecameInvisible()
@@ -216,8 +230,8 @@ public class EnemyController : MonoBehaviour
         Move();
 
         // 脱出ポイントに到達したかチェック
-        if (Vector3.Distance(transform.position, escapePoint.position) < 0.5f)
-        {
+        //if (Vector3.Distance(transform.position, escapePoint.position) < 0.5f)
+        if (isInExit) {
             EscapeSuccessfully();
         }
     }
