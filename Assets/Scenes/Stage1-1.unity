@@ -11426,6 +11426,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Minerals_Normal
       objectReference: {fileID: 0}
+    - target: {fileID: 6315328871360927071, guid: 8a67ec9607c87c74abcda51c4ce05116, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7245078058532999917, guid: 8a67ec9607c87c74abcda51c4ce05116, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2
@@ -17071,6 +17075,59 @@ Transform:
   - {fileID: 1308207740}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1509711019
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1509711021}
+  - component: {fileID: 1509711020}
+  m_Layer: 0
+  m_Name: Exit
+  m_TagString: Exit
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1509711020
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509711019}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1509711021
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509711019}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.54, z: 0}
+  m_LocalScale: {x: 3.8375, y: 4.0875, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1516773874
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19530,8 +19587,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3460853908548121370, guid: aca5d88847751b248a2430b00d2f0f9f, type: 3}
+      propertyPath: _PlayerDigSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3460853908548121370, guid: aca5d88847751b248a2430b00d2f0f9f, type: 3}
       propertyPath: _PlayerMoveSpeed
-      value: 4
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 3460853908548121370, guid: aca5d88847751b248a2430b00d2f0f9f, type: 3}
       propertyPath: _EscapeSpeedRatio
@@ -23698,3 +23759,4 @@ SceneRoots:
   - {fileID: 945400736}
   - {fileID: 1303659584}
   - {fileID: 1785267648}
+  - {fileID: 1509711021}
