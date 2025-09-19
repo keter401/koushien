@@ -399,20 +399,27 @@ public class FleeState : IEnemyState
 
     public void Update(EnemyController enemy)
     {
+        // ↓のプレイヤーカメラから外れたコードを書いたやつへ。
+        // OnBecameInvisible関数を使えやい！！！！！！！！
+        // この関数はカメラから外れたときに自動的に呼ばれるんや！
+
         // プレイヤーカメラから外れた場合
-        if (!enemy.IsInPlayerView)
-        {
-            // 取得数に応じて状態遷移
-            if (enemy.ShouldEscape)
-            {
-                enemy.TransitionToState(enemy._EscapeState);
-            }
-            else
-            {
-                enemy.TransitionToState(enemy._WanderState);
-            }
-            return;
-        }
+        //if (!enemy.IsInPlayerView)
+        //{
+        //    // 取得数に応じて状態遷移
+        //    if (enemy.ShouldEscape)
+        //    {
+        //        Debug.Log("一杯とったにげる！");
+
+        //        enemy.TransitionToState(enemy._EscapeState);
+        //    }
+        //    else
+        //    {
+        //        enemy.TransitionToState(enemy._WanderState);
+        //        Debug.Log("まだ足りない！ワンダーする！！");
+        //    }
+        //    return;
+        //}
 
         // 崖チェック（ガキの場合はfalse）
         if (!HasGroundAhead(enemy))
@@ -456,14 +463,27 @@ public class FleeState : IEnemyState
 
     public void OnBecameInvisible(EnemyController enemy)
     {
-        // パーツの取得数によってステートを変化させる
-        if (enemy._PartCount < 5)
+        //// パーツの取得数によってステートを変化させる
+        //if (enemy._PartCount < 5)
+        //{
+        //    enemy.TransitionToState(enemy._WanderState);
+        //}
+        //else
+        //{
+        //    enemy.TransitionToState(enemy._EscapeState);
+        //}
+
+        // 取得数に応じて状態遷移
+        if (enemy.ShouldEscape)
         {
-            enemy.TransitionToState(enemy._WanderState);
+            Debug.Log("一杯とったにげる！");
+
+            enemy.TransitionToState(enemy._EscapeState);
         }
         else
         {
-            enemy.TransitionToState(enemy._EscapeState);
+            enemy.TransitionToState(enemy._WanderState);
+            Debug.Log("まだ足りない！ワンダーする！！");
         }
     }
 
