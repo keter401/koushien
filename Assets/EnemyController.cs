@@ -147,7 +147,12 @@ public class EnemyController : MonoBehaviour
         // 現在のステートに処理を投げる
         _CurrentState?.OnEnemyCollision(collision.collider, this);
 
-        if(collision.gameObject.CompareTag("Exit")) {
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Exit"))
+        {
             isInExit = false;
         }
     }
