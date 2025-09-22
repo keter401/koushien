@@ -37,12 +37,13 @@ public class WordData : DataBaseData
 
     public override bool Init(string[] data)
     {
-        if(data.Count() < 6) {
+        //パラメーター変数分回して読み込み処理
+        if (data.Count() < 6) {
             Debug.LogWarning("要素数が足りないよ");
             return  false; 
         }
         this.name = data[0];
-        if (this.name == "") { return false; }
+        if (this.name == "") { Debug.LogWarning("名前が入ってない要素検出"); return false; }
 
         int.TryParse(data[1], out wordLength);
 
