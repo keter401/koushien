@@ -18,14 +18,17 @@ public class FileImporter : ScriptableObject
     public enum DataBaseType
     {
         word,
+        part,
     }
     public static Dictionary<DataBaseType, Type> DataBaseTypeDictionary = new Dictionary<DataBaseType, Type>()
     {
         { DataBaseType.word, typeof(WordDataBase)},
+        { DataBaseType.part, typeof(PartDataBase)},
     };
     public static Dictionary<Type, Type> DataTypeDictionary = new Dictionary<Type, Type>()
     {
         {typeof(WordDataBase), typeof(WordData) },
+        {typeof(PartDataBase), typeof(PartData) },
     };
 
 

@@ -57,7 +57,7 @@ public class FileImporterEditor : Editor
         //ファイルの情報を読み込んでデーターベースに落とす
         string text = importer.file.text;
         string[] lines = text.Split('\n');
-        for (int i = importer.skipLines; i < lines.Length; i++)
+        for (int i = importer.skipLines; i < lines.Length - 1; i++) //-1はcsvに謎の空白行が最後に入るから
         {
             string[] data = lines[i].Split(",");
             var dataInstance = Activator.CreateInstance(importer.GetDataType()) as DataBaseData;
