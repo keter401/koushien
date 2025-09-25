@@ -11,6 +11,7 @@ public enum ItemType
 public class ItemBase
 {
     [SerializeField] private ItemType type = ItemType.None;
+    [SerializeField] private string dictionaryKey = string.Empty;
     [SerializeField] private int id = 0;
     [SerializeField] private string name = "Default Item";
     [SerializeField] private string description = "This is a default item description.";
@@ -23,13 +24,20 @@ public class ItemBase
     /// <param name="itemName">アイテムの名前</param>
     /// <param name="itemDescription">アイテムの説明</param>
    public ItemBase(ItemType itemType, int itemId, string itemName = "Unknown Item", string itemDescription = "Unknown")
-    {
+   {
         type = itemType;
         id = itemId;
         name = itemName;
         description = itemDescription;
-    }
-
+   }
+   public ItemBase(ItemType itemType, string key, int itemId, string itemName = "Unknown Item", string itemDescription = "Unknown")
+   {
+        type = itemType;
+        dictionaryKey = key;
+        id = itemId;
+        name = itemName;
+        description = itemDescription;
+   }
 
     /// <summary>
     /// 存在しないアイテムを取得します
@@ -52,6 +60,12 @@ public class ItemBase
     {
         get { return type; }
         set { type = value; }
+    }
+
+    public string DictionaryKey
+    {
+        get { return dictionaryKey; }
+        set { dictionaryKey = value; }
     }
 
     public string Name
