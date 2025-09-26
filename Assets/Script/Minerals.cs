@@ -28,7 +28,7 @@ public class Minerals : MonoBehaviour
         crystalItemManager = GetComponent<ItemManager>();
 
 
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform.parent;
         playerItemManager = player.GetComponent<ItemManager>();
         if (crystalItemManager)
         {

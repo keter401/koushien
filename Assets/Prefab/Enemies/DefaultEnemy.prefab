@@ -202,6 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wordDataBase: {fileID: 11400000, guid: 1d94ca8086253da49844450f47815961, type: 2}
+  partDataBase: {fileID: 11400000, guid: f3523bd9be88b8040849dce5ebee028b, type: 2}
   maxWordCount: 10
   maxPartCount: 10
   words: []
