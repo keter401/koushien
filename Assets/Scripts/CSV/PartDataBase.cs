@@ -7,17 +7,27 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.Rendering.Universal;
 using UnityEngine;
+using static FileImporter;
 
 [CreateAssetMenu(fileName = "PartDataBase", menuName = "Scriptable Objects/PartDataBase")]
 public class PartDataBase : DataBase
 {
-    public List<PartData> puchStyleData= new List<PartData>();
-    public List<PartData> shotStyleData= new List<PartData>();
+    public List<PartData> punchStyleData = new List<PartData>();
+    public List<PartData> shotStyleData = new List<PartData>();
+
+    public Dictionary<string, List<PartData>> partStyleDictionary = new Dictionary<string, List<PartData>>();
+
+    public void OnEnable()
+    {
+        partStyleDictionary["punchStyle"] = punchStyleData;
+        partStyleDictionary["shotStyle"] = shotStyleData;
+    }
+    
 
     override public void ClearAllDatas()
     {
-        puchStyleData.Clear();
-        puchStyleData.TrimExcess();
+        punchStyleData.Clear();
+        punchStyleData.TrimExcess();
         shotStyleData.Clear();
         shotStyleData.TrimExcess();
     }
@@ -26,7 +36,7 @@ public class PartDataBase : DataBase
         var styleData = data as PartData;
         if(styleData.type.Contains("パンチ"))
         {
-            puchStyleData.Add(styleData);
+            punchStyleData.Add(styleData);
         }
         else if (styleData.type.Contains("ショット"))
         {

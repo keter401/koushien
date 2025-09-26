@@ -1,11 +1,13 @@
 // 制作者: 濵田 芳辰
 
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
     [SerializeField] private WordDataBase wordDataBase;     // ワードデータベース
+    [SerializeField] private PartDataBase partDataBase;     // ワードデータベース
     [SerializeField] private int maxWordCount = 3;         // 最大単語数
     [SerializeField] private int maxPartCount = 3;         // 最大パーツ数
     [SerializeField] private ItemBase[] words;        // 単語
@@ -15,10 +17,16 @@ public class ItemManager : MonoBehaviour
     void Awake()
     {
         words = new ItemBase[maxWordCount];
+        parts = new ItemBase[maxPartCount];
 
         // 単語を初期化
         for (int i = 0; i < maxWordCount; i++) {
             words[i] = ItemBase.CreateNoneItem();
+        }
+        // パーツを初期化
+        for (int i = 0; i < maxPartCount; i++)
+        {
+            parts[i] = ItemBase.CreateNoneItem();
         }
     }
 
@@ -43,6 +51,22 @@ public class ItemManager : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// 空いているパーツがあるかを確認する
+    /// </summary>
+    /// <returns>空いてたらTrue</returns>
+    public bool HasEmptyPart()
+    {
+        // 空いている単語があるか
+        for (int i = 0; i < parts.Length; i++)
+        {
+            if (parts[i].Type == ItemType.None)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
     /// <summary>
     /// 空いている単語がないかを確認する
@@ -53,6 +77,24 @@ public class ItemManager : MonoBehaviour
         // 空いている単語がないか
         for (int i = 0; i < words.Length; i++) {
             if (words[i].Type != ItemType.None) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// 空いているパーツがないかを確認する
+    /// </summary>
+    /// <returns>全部埋まってなかったらTrue</returns>
+    public bool IsFullyEmptyPart()
+    {
+        // 空いている単語がないか
+        for (int i = 0; i < parts.Length; i++)
+        {
+            if (parts[i].Type != ItemType.None)
+            {
                 return false;
             }
         }
@@ -110,6 +152,33 @@ public class ItemManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// パーツを送信する
+    /// </summary>
+    /// <param name="itemManager">相手のパーツマネージャー</param>
+    /// <param name="partIndex">送信するパーツの要素番号</param>
+    public void SendPart(ItemManager itemManager)
+    {
+        // 空いてる配列に単語を追加
+        for (int i = 0; i < itemManager.parts.Length; i++)
+        {
+            if (itemManager.parts[i].Type == ItemType.None)
+            {
+                var part = System.Array.Find(parts, n => n.Type != ItemType.None);
+                if(part != null)
+                {
+                    itemManager.parts[i] = part;
+                    Debug.Log($"{part.Name} を送信  [{name}] -> [{itemManager.name}]");
+
+                    part = ItemBase.CreateNoneItem();
+                }
+            }
+        }
+
+        Debug.LogWarning($"[{itemManager.name}] 空いているパーツがありません");
+    }
+
+
 
     /// <summary>
     /// 単語をセットする
@@ -132,6 +201,51 @@ public class ItemManager : MonoBehaviour
     }
 
     /// <summary>
+    /// パーツをセットする
+    /// </summary>
+    /// <param name="partDataIndex">単語のデータ要素番号</param>
+    /// <returns>SetできたらTrue</returns>
+    public bool SetPart(string key, int partDataIndex)
+    {
+        // 空いている単語があるか
+        for (int i = 0; i < parts.Length; i++)
+        {
+            if (parts[i].Type == ItemType.None)
+            {
+                parts[i] = new PartItem(key, (int)partDataIndex);
+                Debug.Log($"{partDataBase.partStyleDictionary[key][(int)partDataIndex].name} をセット [{name}]");
+                return true;
+            }
+        }
+
+        Debug.LogWarning($"[{name}] 空いているパーツがありません");
+        return false;
+    }
+
+    /// <summary>
+    /// パーツをセットする
+    /// </summary>
+    /// <param name="partDataIndex">単語のデータ要素番号</param>
+    /// <returns>SetできたらTrue</returns>
+    public bool SetPart(int id, int partDataIndex)
+    {
+        // 空いている単語があるか
+        for (int i = 0; i < parts.Length; i++)
+        {
+            if (parts[i].Type == ItemType.None)
+            {
+                parts[i] = new PartItem(id, (int)partDataIndex);
+                Debug.Log($"{partDataBase.partStyleDictionary.ElementAt(id).Value[(int)partDataIndex].name} をセット [{name}]");
+                return true;
+            }
+        }
+
+        Debug.LogWarning($"[{name}] 空いているパーツがありません");
+        return false;
+    }
+
+
+    /// <summary>
     /// ランダムに単語を生成する
     /// </summary>
     public void RandomGenerateWords()
@@ -140,6 +254,24 @@ public class ItemManager : MonoBehaviour
         for (int i = 0; i < maxWordCount; i++) {
             int wordDataIndex = (int)Random.Range(0, wordDataBase.datas.Count);
             SetWord(wordDataIndex);
+        }
+    }
+
+    /// <summary>
+    /// ランダムにパーツを生成する 
+    /// </summary>
+    public void RandomGenerateParts()
+    {
+        // ランダムに単語をセット
+        for (int i = 0; i < maxPartCount; i++)
+        {
+            //辞書に登録されているリストをランダムで抽出
+            int partDataDictionaryId = (int)Random.Range(0, partDataBase.partStyleDictionary.Count);
+            var list = partDataBase.partStyleDictionary.ElementAt(partDataDictionaryId).Value;
+
+            //抽出されたリストからランダムで単語抽出
+            int partDataIndex = (int)Random.Range(0, list.Count);
+            SetPart(partDataDictionaryId, partDataIndex);
         }
     }
 
@@ -212,11 +344,98 @@ public class ItemManager : MonoBehaviour
 
 
     /// <summary>
+    /// 指定した数のパーツをドロップする
+    /// </summary>
+    /// <param name="dropCount">ドロップ数</param>
+    public void DropPart(int dropCount)
+    {
+        for (int i = 0; i < dropCount; i++)
+        {
+
+            bool isBreak = false;
+
+
+            // 空いている単語があるか
+            while (true)
+            {
+                if (IsFullyEmptyPart())
+                {
+                    int partDataIndex = Random.Range(0, maxPartCount);
+                    if (parts[i].Type == ItemType.None) continue;
+
+                    parts[i] = ItemBase.CreateNoneItem();
+                    break;
+
+                }
+                else
+                {
+                    Debug.LogWarning($"[{name}] 空いている単語がありません");
+                    isBreak = true;
+
+                    break;
+                }
+            }
+
+            if (isBreak) break;
+        }
+    }
+
+
+    /// <summary>
+    /// 指定した数のパーツをドロップする
+    /// </summary>
+    /// <param name="dropCount">ドロップ数</param>
+    /// <param name="dropPartIndices"> ドロップしたパーツのインデックスを格納する配列</param>
+    public void DropPart(int dropCount, ref int[] dropPartIndices)
+    {
+        for (int i = 0; i < dropCount; i++)
+        {
+
+            bool isBreak = false;
+
+            while (true)
+            {
+                // 空いているパーツがあるか
+                if (IsFullyEmptyPart())
+                {
+                    int partDataIndex = Random.Range(0, maxPartCount);
+                    if (parts[i].Type == ItemType.None) continue;
+
+                    dropPartIndices.Append(parts[i].Id);
+                    parts[i] = ItemBase.CreateNoneItem();
+                    break;
+
+                }
+                else
+                {
+                    Debug.LogWarning($"[{name}] 空いている単語がありません");
+                    isBreak = true;
+
+                    break;
+                }
+            }
+
+            if (isBreak) break;
+        }
+    }
+
+
+    /// <summary>
     /// 最大の単語数を取得する
     /// </summary>
     /// <returns>最大の単語数</returns>
     public int GetMaxWordCount()
     {
         return (int)maxWordCount;
+    }
+
+
+    /// <summary>
+    /// 最大のパーツ数を取得する
+    /// </summary>
+    /// <returns>最大のパーツ数</returns>
+    public int GetMaxPartCount()
+    {
+        return (int)maxPartCount;
     }
 }

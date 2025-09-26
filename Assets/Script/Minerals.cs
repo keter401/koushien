@@ -35,6 +35,8 @@ public class Minerals : MonoBehaviour
             crystalItemManager.RandomGenerateWords();
             int wc = crystalItemManager.GetMaxWordCount();
             if (wc > 0) wordCount = wc;
+
+            crystalItemManager.RandomGenerateParts();
         }
 
 
@@ -105,7 +107,7 @@ public class Minerals : MonoBehaviour
         if (currentHP <= 0)
         {
             Debug.Log($"{LOG} 破壊: パーツドロップ処理を実行します");
-            DropParts();
+            DropParts(receiver);
             Destroy(gameObject);
         }
 
@@ -123,11 +125,17 @@ public class Minerals : MonoBehaviour
         }
     }
 
-    private void DropParts()
+    private void DropParts(ItemManager receiver)
     {
         // 必要に応じてパーツ生成を実装
         Debug.Log($"{LOG} DropParts 実行（ここに生成処理を実装）");
+        if (crystalItemManager != null && receiver != null)
+        {
+            crystalItemManager.SendPart(receiver); // ランダム1個送信
+        }
     }
+
+
 
 
     public int GetCurrentHP()

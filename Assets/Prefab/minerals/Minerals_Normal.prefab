@@ -125,8 +125,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 100
   wordCount: 5
-  partsInside: []
-  wordsInside: []
 --- !u!114 &-449494585102792484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wordDataBase: {fileID: 11400000, guid: 1d94ca8086253da49844450f47815961, type: 2}
+  partDataBase: {fileID: 11400000, guid: f3523bd9be88b8040849dce5ebee028b, type: 2}
   maxWordCount: 5
   maxPartCount: 3
   words: []

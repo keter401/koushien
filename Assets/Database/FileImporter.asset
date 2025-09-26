@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: FileImporter
   m_EditorClassIdentifier: 
   skipLines: 1
-  file: {fileID: 4900000, guid: d4e1d9127a4f927438430ed1f1802154, type: 3}
-  dataBaseType: 0
+  file: {fileID: 4900000, guid: e0a3fb254789321409b0e175f38403c9, type: 3}
+  dataBaseType: 1

@@ -10,6 +10,7 @@ public class GManager : MonoBehaviour
 
 
     [SerializeField] private WordDataBase wordDataBase = null; // 単語データベース
+    [SerializeField] private PartDataBase partDataBase = null; // パーツデーターベース
 
     [Header("時間設定")]
     [SerializeField] private bool isTimerEnabled = false;   // タイマーを有効にするか
@@ -76,6 +77,10 @@ public class GManager : MonoBehaviour
     public WordDataBase GetWordDataBase()
     {
         return wordDataBase;
+    }
+    public PartDataBase GetPartDataBase()
+    {
+        return partDataBase;
     }
 
 
