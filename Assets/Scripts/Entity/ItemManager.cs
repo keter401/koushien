@@ -152,6 +152,34 @@ public class ItemManager : MonoBehaviour
         }
     }
 
+
+    /// <summary>
+    /// パーツを送信する
+    /// </summary>
+    /// <param name="itemManager">相手のパーツマネージャー</param>
+    /// <param name="partIndex">送信するパーツの要素番号</param>
+    /// <returns>送信できたらTrue</returns>
+    public bool SendPart(ItemManager itemManager, int partIndex)
+    {
+        // 空いてる配列に単語を追加
+        for (int i = 0; i < itemManager.parts.Length; i++)
+        {
+            if (itemManager.parts[i].Type == ItemType.None)
+            {
+                itemManager.parts[i] = parts[(int)partIndex];
+                Debug.Log($"{parts[(int)partIndex].Name} を送信  [{name}] -> [{itemManager.name}]");
+
+                parts[(int)partIndex] = ItemBase.CreateNoneItem();
+
+                return true;
+            }
+        }
+
+        Debug.LogWarning($"[{itemManager.name}] 空いているパーツがありません");
+        return false;
+    }
+
+
     /// <summary>
     /// パーツを送信する
     /// </summary>
@@ -159,23 +187,14 @@ public class ItemManager : MonoBehaviour
     /// <param name="partIndex">送信するパーツの要素番号</param>
     public void SendPart(ItemManager itemManager)
     {
-        // 空いてる配列に単語を追加
-        for (int i = 0; i < itemManager.parts.Length; i++)
+        // 自分が持っているパーツ一つずつ処理
+        for (int i = 0; i < parts.Length; i++)
         {
-            if (itemManager.parts[i].Type == ItemType.None)
+            if (parts[i].Type != ItemType.None)
             {
-                var part = System.Array.Find(parts, n => n.Type != ItemType.None);
-                if(part != null)
-                {
-                    itemManager.parts[i] = part;
-                    Debug.Log($"{part.Name} を送信  [{name}] -> [{itemManager.name}]");
-
-                    part = ItemBase.CreateNoneItem();
-                }
+                SendPart(itemManager, i);
             }
         }
-
-        Debug.LogWarning($"[{itemManager.name}] 空いているパーツがありません");
     }
 
 
