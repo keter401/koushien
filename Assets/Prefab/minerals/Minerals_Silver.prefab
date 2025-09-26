@@ -246,9 +246,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 100
+  player: {fileID: 1415814081919570354, guid: 338fae45698aa5f4f9a3461be9a8f99e, type: 3}
+  playerItemManager: {fileID: 2540271944776954854, guid: 338fae45698aa5f4f9a3461be9a8f99e, type: 3}
   wordCount: 10
-  partsInside: []
-  wordsInside: []
 --- !u!114 &-678942512467571878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,6 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wordDataBase: {fileID: 11400000, guid: 1d94ca8086253da49844450f47815961, type: 2}
+  partDataBase: {fileID: 11400000, guid: f3523bd9be88b8040849dce5ebee028b, type: 2}
   maxWordCount: 10
   maxPartCount: 3
   words: []
