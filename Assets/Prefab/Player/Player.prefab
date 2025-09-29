@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5246101082464032820}
   - component: {fileID: 985753723982411497}
   - component: {fileID: 3368250553681874387}
-  - component: {fileID: 1956154912975736628}
   - component: {fileID: 4154263443123802983}
+  - component: {fileID: 4530491783949981066}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: Drill
@@ -28,13 +28,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2730183512301654335}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: -0.141, y: 0.011, z: 0}
+  m_LocalScale: {x: 0.051852904, y: 0.051852904, z: 0.051852904}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 186784211756677844}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 90, y: 180, z: -180}
 --- !u!33 &985753723982411497
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2730183512301654335}
-  m_Mesh: {fileID: -2432090755550338912, guid: 4a685734f0de2f849b76e0a5e084a7b7, type: 3}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &3368250553681874387
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3033667219593020291, guid: 4a685734f0de2f849b76e0a5e084a7b7, type: 3}
+  - {fileID: 2100000, guid: 37f0f593fe85d0144a6d2715f5fea432, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -88,28 +88,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1956154912975736628
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2730183512301654335}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2432090755550338912, guid: 4a685734f0de2f849b76e0a5e084a7b7, type: 3}
 --- !u!114 &4154263443123802983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,6 +107,27 @@ MonoBehaviour:
   strengthY: 0.02
   strengthZ: 0.5
   frequency: 10
+--- !u!135 &4530491783949981066
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2730183512301654335}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Radius: 2
+  m_Center: {x: 2, y: 0, z: 0}
 --- !u!1 &3038182863640147620
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +209,7 @@ MonoBehaviour:
   drillMesh: {fileID: 5246101082464032820}
   center: {fileID: 4464649848175290345}
   mesh: {fileID: 3999815069327765330}
-  drillCollider: {fileID: 1956154912975736628}
+  drillCollider: {fileID: 4530491783949981066}
   moveSpeed: 3
   moveAcceleration: 10
   linearDrag: 3
@@ -437,7 +436,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5.4058685, y: 5.4058685, z: 5.4058685}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5246101082464032820}
