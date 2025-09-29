@@ -8,9 +8,12 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveInput;                          // 移動入力
     private Vector2 lookInput = Vector2.right;          // 視点入力
     private Vector3 dir = Vector3.right;                // 向き
+    private Vector3 normalScale;                     // メッシュの元のスケール
 
     [SerializeField] private Transform drill = null;          // ドリルのTransform
+    [SerializeField] private Transform drillMesh = null;      // ドリルのメッシュのTransform
     [SerializeField] private Transform center = null;        // 中心のTransform
+    [SerializeField] private Transform mesh = null;        // メッシュのTransform
     [SerializeField] private Collider drillCollider = null; // ドリルのコライダー
     [SerializeField] private float moveSpeed = 20.0f;           // 移動速度
     [SerializeField] private float moveAcceleration = 10.0f;    // 加速度
@@ -23,6 +26,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float highFrequencyVibration = 0.1f; // 高周波振動の強さ
 
     private Rigidbody rb;
+    private PerlinShake drillShake;
 
     private float jumpTime = 0.0f; // ジャンプの持続時間
     private float drillRadius; // ドリルの中心からの距離
@@ -68,8 +72,10 @@ public class PlayerController : MonoBehaviour
     {
         // コンポーネント取得
         rb = GetComponent<Rigidbody>();
+        drillShake = drillMesh.GetComponent<PerlinShake>();
 
         drillRadius = (drill.position - center.position).magnitude;
+        normalScale = mesh.localScale;
     }
 
     // Update is called once per frame
@@ -139,6 +145,13 @@ public class PlayerController : MonoBehaviour
         // 向きの更新
         if (moveInput.x != 0.0f) {
             dir = new Vector3(moveInput.x, 0.0f, 0.0f);
+            dir.Normalize();
+
+            Vector3 scale = normalScale;
+            scale.x *= Mathf.Sign(dir.x);
+
+            mesh.localScale = scale; // 向きに応じて反転
+            //transform.localScale = new Vector3(dir.x, 1.0f, 1.0f); // 向きに応じて反転
         }
 
         Vector3 moveAcce = Vector3.zero;
@@ -195,10 +208,12 @@ public class PlayerController : MonoBehaviour
     {
         if(context.performed) {
             drillCollider.enabled = true; // ドリルのコライダーを有効化
+            drillShake.ShakeStart();
         }
 
         if (context.canceled) {
             drillCollider.enabled = false; // ドリルのコライダーを無効化
+            drillShake.Stop();
         }
     }
 }
