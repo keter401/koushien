@@ -339,6 +339,11 @@ public class WanderState : IEnemyState
         {
             enemy.UTurn();
         }
+        // Uƒ^[ƒ“ˆ—
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            enemy.UTurn();
+        }
     }
 
     public void OnBecameInvisible(EnemyController enemy)
