@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour
             Vector3 scale = normalScale;
             scale.x *= Mathf.Sign(dir.x);
 
-            //mesh.localScale = scale; // Œü‚«‚É‰ž‚¶‚Ä”½“]
+            mesh.localScale = scale; // Œü‚«‚É‰ž‚¶‚Ä”½“]
             //transform.localScale = new Vector3(dir.x, 1.0f, 1.0f); // Œü‚«‚É‰ž‚¶‚Ä”½“]
         }
 
