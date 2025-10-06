@@ -3,77 +3,77 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine.UIElements;
 
-// 1. ƒGƒlƒ~[‚Ìó‘ÔƒCƒ“ƒ^[ƒtƒF[ƒX
+// 1. ï¿½Gï¿½lï¿½~ï¿½[ï¿½Ìï¿½ÔƒCï¿½ï¿½ï¿½^ï¿½[ï¿½tï¿½Fï¿½[ï¿½X
 public interface IEnemyState
 {
     void Enter(EnemyController enemy);
     void Update(EnemyController enemy);
     void Exit(EnemyController enemy);
 
-    // ‚»‚ê‚¼‚ê‚ÌƒXƒe[ƒg‚Å‹ŠE‚Éƒ‚ƒm‚ª“ü‚Á‚½‚Ì‹““®‚ª•Ï‚í‚é‚½‚ßAƒCƒ“ƒ^[ƒtƒF[ƒX‚É‚¢‚ê‚Ä‚é
+    // ï¿½ï¿½ï¿½ê‚¼ï¿½ï¿½ÌƒXï¿½eï¿½[ï¿½gï¿½Åï¿½ï¿½Eï¿½Éƒï¿½ï¿½mï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï‚ï¿½é‚½ï¿½ßAï¿½Cï¿½ï¿½ï¿½^ï¿½[ï¿½tï¿½Fï¿½[ï¿½Xï¿½É‚ï¿½ï¿½ï¿½Ä‚ï¿½
     void OnVisionTrigger(Collider other, EnemyController enemy);
 
-    // ‚±‚Á‚¿‚Í“G–{‘Ì‚É“–‚½‚Á‚½‚Ìˆ—‚ğ‘‚­
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í“Gï¿½{ï¿½Ì‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     void OnEnemyCollision(Collider other, EnemyController enemy);
 
-    // ƒJƒƒ‰‚©‚çŠO‚ê‚½‚Ìˆ—
+    // ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ê‚½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
     void OnBecameInvisible(EnemyController enemy);
 }
 
 
 public class EnemyController : MonoBehaviour
 {
-    [Header("ˆÚ“®‘¬“xİ’è")]
-    public float _PlayerMoveSpeed = 6f; // ƒvƒŒƒCƒ„[‚ÌŠî€‘¬“x
+    [Header("ï¿½Ú“ï¿½ï¿½ï¿½ï¿½xï¿½İ’ï¿½")]
+    public float _PlayerMoveSpeed = 6f; // ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ÌŠî€ï¿½ï¿½ï¿½x
 
-    // StartŠÖ”‚Å‚»‚ê‚¼‚ê‚ÌƒXƒe[ƒg‚ÌƒXƒs[ƒh‚ğ‰Šú‰»‚·‚é
-    public float _WanderSpeedRatio; // ‚¤‚ë‚¤‚ëó‘Ô: 1/2
-    public float _FleeSpeedRatio;   // “¦‚°ó‘Ô: 3/4
-    public float _EscapeSpeedRatio; // ’Eoó‘Ô: 3/4
+    // Startï¿½Öï¿½ï¿½Å‚ï¿½ï¿½ê‚¼ï¿½ï¿½ÌƒXï¿½eï¿½[ï¿½gï¿½ÌƒXï¿½sï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public float _WanderSpeedRatio; // ï¿½ï¿½ï¿½ë‚¤ï¿½ï¿½ï¿½ï¿½: 1/2
+    public float _FleeSpeedRatio;   // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: 3/4
+    public float _EscapeSpeedRatio; // ï¿½Eï¿½oï¿½ï¿½ï¿½: 3/4
 
-    // ‹ŠE—p‚Ì“–‚½‚è”»’è‚ÍƒgƒŠƒK[‚Åì‚èA“G‚»‚Ì‚à‚Ì‚Ì“–‚½‚è”»’è‚Í•Ê‚ÌƒRƒ‰ƒCƒ_[‚Åì‚é‚±‚ÆI
-    [Header("‹ŠEƒRƒ‰ƒCƒ_[İ’è")]
+    // ï¿½ï¿½ï¿½Eï¿½pï¿½Ì“ï¿½ï¿½ï¿½ï¿½è”»ï¿½ï¿½Íƒgï¿½ï¿½ï¿½Kï¿½[ï¿½Åï¿½ï¿½Aï¿½Gï¿½ï¿½ï¿½Ì‚ï¿½ï¿½Ì‚Ì“ï¿½ï¿½ï¿½ï¿½è”»ï¿½ï¿½Í•Ê‚ÌƒRï¿½ï¿½ï¿½Cï¿½_ï¿½[ï¿½Åï¿½é‚±ï¿½ÆI
+    [Header("ï¿½ï¿½ï¿½Eï¿½Rï¿½ï¿½ï¿½Cï¿½_ï¿½[ï¿½İ’ï¿½")]
     [SerializeField] Collider _VisionCollider;
 
-    [Header("–{‘ÌƒRƒ‰ƒCƒ_[İ’è")]
+    [Header("ï¿½{ï¿½ÌƒRï¿½ï¿½ï¿½Cï¿½_ï¿½[ï¿½İ’ï¿½")]
     [SerializeField] Collider _EnemyCollider;
 
-    [Header("Œ@íİ’è")]
-    public float _PlayerDigSpeed = 2f; // ƒvƒŒƒCƒ„[‚ÌŠî€Œ@í‘¬“x
-    public float _DigSpeedRatio = 0.5f; // ‚Ù‚è‚Ù‚èó‘Ô: 1/2
+    [Header("ï¿½@ï¿½ï¿½İ’ï¿½")]
+    public float _PlayerDigSpeed = 2f; // ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ÌŠî€ï¿½@ï¿½í‘¬ï¿½x
+    public float _DigSpeedRatio = 0.5f; // ï¿½Ù‚ï¿½Ù‚ï¿½ï¿½ï¿½: 1/2
 
-    [Header("ƒAƒCƒeƒ€İ’è")]
-    public int _WordCount = 0; // æ“¾‚µ‚½ƒ[ƒh”
-    public int _PartCount = 0; // æ“¾‚µ‚½ƒp[ƒc”
-    public int _EscapeThreshold = 10; // ’Eoó‘Ô‚ÉˆÚs‚·‚éè‡’l
+    [Header("ï¿½Aï¿½Cï¿½eï¿½ï¿½ï¿½İ’ï¿½")]
+    public int _WordCount = 0; // ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½
+    public int _PartCount = 0; // ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½ï¿½pï¿½[ï¿½cï¿½ï¿½
+    public int _EscapeThreshold = 10; // ï¿½Eï¿½oï¿½ï¿½Ô‚ÉˆÚsï¿½ï¿½ï¿½ï¿½è‡’l
 
-    [Header("ŠƒCƒ“ƒxƒ“ƒgƒŠ(“G)")]
-    public ItemManager _Inventory;   // © ó‚¯æ‚èæ
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½xï¿½ï¿½ï¿½gï¿½ï¿½(ï¿½G)")]
+    public ItemManager _Inventory;   // ï¿½ï¿½ ï¿½ó‚¯ï¿½ï¿½ï¿½
 
 
-    [Header("QÆ")]
+    [Header("ï¿½Qï¿½ï¿½")]
     public Transform _Player;
-    public Transform[] _EscapePoints; // ’Eoƒ|ƒCƒ“ƒg‚ÌˆÊ’uƒŠƒXƒg
-    [HideInInspector] public ItemManager _TargetCrystalManager; // ƒ^[ƒQƒbƒg‚ÌƒNƒŠƒXƒ^ƒ‹‚ÌƒAƒCƒeƒ€ƒ}ƒl[ƒWƒƒ[
+    public Transform[] _EscapePoints; // ï¿½Eï¿½oï¿½|ï¿½Cï¿½ï¿½ï¿½gï¿½ÌˆÊ’uï¿½ï¿½ï¿½Xï¿½g
+    [HideInInspector] public ItemManager _TargetCrystalManager; // ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½ÌƒNï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½ÌƒAï¿½Cï¿½eï¿½ï¿½ï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½ï¿½[
 
-    // “à•”•Ï”
-    private int _MovingDirection = 1; // 1: ‰E, -1: ¶
+    // ï¿½ï¿½ï¿½ï¿½ï¿½Ïï¿½
+    private int _MovingDirection = 1; // 1: ï¿½E, -1: ï¿½ï¿½
     private bool _IsInPlayerView = true;
-    private Transform _CurrentTarget; // Œ»İ‚Ìƒ^[ƒQƒbƒgiƒNƒŠƒXƒ^ƒ‹‚â’Eoƒ|ƒCƒ“ƒgj
+    private Transform _CurrentTarget; // ï¿½ï¿½ï¿½İ‚Ìƒ^ï¿½[ï¿½Qï¿½bï¿½gï¿½iï¿½Nï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½ï¿½Eï¿½oï¿½|ï¿½Cï¿½ï¿½ï¿½gï¿½j
     private float _DigTimer = 0f;
-    private float _CrystalHealthRequired = 0f; // ƒNƒŠƒXƒ^ƒ‹‚ğ”j‰ó‚·‚é‚Ì‚É•K—v‚ÈŠÔ
+    private float _CrystalHealthRequired = 0f; // ï¿½Nï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½ï¿½jï¿½ó‚·‚ï¿½Ì‚É•Kï¿½vï¿½Èï¿½ï¿½ï¿½
 
-    // Œ»İ‚Ìó‘Ô
+    // ï¿½ï¿½ï¿½İ‚Ìï¿½ï¿½
     private IEnemyState _CurrentState;
 
-    // ŠeƒXƒe[ƒg‚ÌƒCƒ“ƒXƒ^ƒ“ƒX
+    // ï¿½eï¿½Xï¿½eï¿½[ï¿½gï¿½ÌƒCï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½X
     public WanderState _WanderState = new WanderState();
     public FleeState _FleeState = new FleeState();
     public DigMovement _DigMovementState = new DigMovement();
     public DigState _DigState = new DigState();
     public EscapeState _EscapeState = new EscapeState();
 
-    // ƒvƒƒpƒeƒB
+    // ï¿½vï¿½ï¿½ï¿½pï¿½eï¿½B
     public float CurrentMoveSpeed { get; private set; }
     public int TotalItemCount => _WordCount + _PartCount;
     public bool HasItems => TotalItemCount > 0;
@@ -85,16 +85,16 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        // ƒvƒŒƒCƒ„[‚ÆƒJƒƒ‰‚ÌQÆ‚ğİ’è
+        // ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ÆƒJï¿½ï¿½ï¿½ï¿½ï¿½ÌQï¿½Æ‚ï¿½İ’ï¿½
         if (_Player == null)
             _Player = GameObject.FindGameObjectWithTag("Player")?.transform;
 
-        // ‚»‚ê‚¼‚ê‚ÌƒXƒe[ƒg‚ÌˆÚ“®ƒXƒs[ƒh‚ğƒvƒŒƒCƒ„[‚Ì‘¬“x‚ğŠî€‚É‰Šú‰»
+        // ï¿½ï¿½ï¿½ê‚¼ï¿½ï¿½ÌƒXï¿½eï¿½[ï¿½gï¿½ÌˆÚ“ï¿½ï¿½Xï¿½sï¿½[ï¿½hï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Ì‘ï¿½ï¿½xï¿½ï¿½ï¿½î€ï¿½Éï¿½ï¿½ï¿½ï¿½ï¿½
         _WanderSpeedRatio = _PlayerMoveSpeed * 0.5f;
         _FleeSpeedRatio = _PlayerMoveSpeed * 0.75f;
         _EscapeSpeedRatio = _PlayerMoveSpeed * 0.75f;
 
-        // ‰Šúó‘Ô‚ğ‚¤‚ë‚¤‚ëó‘Ô‚Éİ’è
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‚ï¿½ï¿½ï¿½ï¿½ë‚¤ï¿½ï¿½ï¿½Ô‚Éİ’ï¿½
         TransitionToState(_WanderState);
 
         rb = GetComponent<Rigidbody>();
@@ -102,39 +102,40 @@ public class EnemyController : MonoBehaviour
 
     void Awake()
     {
-        if (_Inventory == null) TryGetComponent(out _Inventory); // “¯‚¶GO‚É•t‚¢‚Ä‚¢‚ê‚ÎE‚¤
+        if (_Inventory == null) TryGetComponent(out _Inventory); // ï¿½ï¿½ï¿½ï¿½GOï¿½É•tï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ÎEï¿½ï¿½
     }
 
     void Update()
     {
-        // Œ»İ‚Ìó‘Ô‚ÌUpdate‚ğÀs
+        // ï¿½ï¿½ï¿½İ‚Ìï¿½Ô‚ï¿½Updateï¿½ï¿½ï¿½ï¿½ï¿½s
         _CurrentState?.Update(this);
 
         Debug.Log($"<color=#00FF00>Enemy State: {_CurrentState.GetType().Name}</color>");
     }
 
-    // ó‘Ô‘JˆÚƒƒ\ƒbƒh
+    // ï¿½ï¿½Ô‘Jï¿½Úƒï¿½ï¿½\ï¿½bï¿½h
     public void TransitionToState(IEnemyState newState)
     {
         _CurrentState?.Exit(this);
         _CurrentState = newState;
         _CurrentState.Enter(this);
 
-        Debug.Log($"ƒGƒlƒ~[ó‘Ô•ÏX: {newState.GetType().Name}");
+        Debug.Log($"ï¿½Gï¿½lï¿½~ï¿½[ï¿½ï¿½Ô•ÏX: {newState.GetType().Name}");
     }
 
-    // ˆÚ“®ˆ—
+    // ï¿½Ú“ï¿½ï¿½ï¿½ï¿½ï¿½
     public void Move()
     {
         Vector3 movement = Vector3.right * _MovingDirection * CurrentMoveSpeed * Time.fixedDeltaTime;
         rb.linearVelocity = new Vector3(movement.x, rb.linearVelocity.y, rb.linearVelocity.z);
         //transform.position += movement;
+        
     }
 
     private void OnTriggerStay(Collider other)
     {
-        // ‚à‚µ‹ŠE‚É‚È‚É‚©“ü‚Á‚Ä‚¢‚½‚ç
-        // Œ»İ‚ÌƒXƒe[ƒg‚Éˆ—‚ğ“Š‚°‚é
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Eï¿½É‚È‚É‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½
+        // ï¿½ï¿½ï¿½İ‚ÌƒXï¿½eï¿½[ï¿½gï¿½Éï¿½ï¿½ï¿½ï¿½ğ“Š‚ï¿½ï¿½ï¿½
         _CurrentState?.OnVisionTrigger(other, this);
 
         if (other.gameObject.CompareTag("Exit")) {
@@ -144,7 +145,7 @@ public class EnemyController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Œ»İ‚ÌƒXƒe[ƒg‚Éˆ—‚ğ“Š‚°‚é
+        // ï¿½ï¿½ï¿½İ‚ÌƒXï¿½eï¿½[ï¿½gï¿½Éï¿½ï¿½ï¿½ï¿½ğ“Š‚ï¿½ï¿½ï¿½
         _CurrentState?.OnEnemyCollision(collision.collider, this);
 
     }
@@ -159,49 +160,49 @@ public class EnemyController : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        // Œ»İ‚ÌƒXƒe[ƒg‚Éˆ—‚ğ“Š‚°‚é
-        // ƒJƒƒ‰‚©‚çŠO‚ê‚½‚Ìˆ—‚Íu“¦‚°ó‘Ôv‚Ì‚µ‚©•K—v‚¶‚á‚È‚¢‚ªAˆê‰‚»‚ê‚¼‚ê‚ÌƒXƒe[ƒg‚Åg‚¦‚é‚æ‚¤‚É‚µ‚Ä‚¨‚­
+        // ï¿½ï¿½ï¿½İ‚ÌƒXï¿½eï¿½[ï¿½gï¿½Éï¿½ï¿½ï¿½ï¿½ğ“Š‚ï¿½ï¿½ï¿½
+        // ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ê‚½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½Íuï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ôvï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Kï¿½vï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½Aï¿½ê‰ï¿½ï¿½ï¿½ê‚¼ï¿½ï¿½ÌƒXï¿½eï¿½[ï¿½gï¿½Ågï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
         _CurrentState?.OnBecameInvisible(this);
     }
 
-    // Uƒ^[ƒ“
+    // Uï¿½^ï¿½[ï¿½ï¿½
     public void UTurn()
     {
         _MovingDirection *= -1;
 
-        // y²‚ğ’†S‚É”½“]‚³‚¹‚é
+        // yï¿½ï¿½ï¿½ğ’†Sï¿½É”ï¿½ï¿½]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         Vector3 rot = transform.rotation.eulerAngles;
         rot.y = (_MovingDirection == 1) ? 0f : 180f;
         transform.rotation = Quaternion.Euler(rot);
     }
 
 
-    // ƒvƒŒƒCƒ„[‚©‚ç“¦‚°‚é•ûŒü‚ÌŒvZ
+    // ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ç“¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÌŒvï¿½Z
     public void FleeFromPlayer()
     {
         if (_Player == null) return;
 
-        // x•ûŒü‚Ì‚Ç‚¿‚ç‚É“¦‚°‚é‚×‚«‚©‚ğŒvZ
+        // xï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Ç‚ï¿½ï¿½ï¿½É“ï¿½ï¿½ï¿½ï¿½ï¿½×‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½vï¿½Z
         Vector3 directionFromPlayer = transform.position - _Player.position;
         int targetDirection = directionFromPlayer.x > 0 ? -1 : 1;
 
-        // i‚ñ‚Å‚¢‚é•ûŒü‚ÉƒvƒŒƒCƒ„[‚ª‚¢‚½‚çUƒ^[ƒ“‚³‚¹‚é
+        // ï¿½iï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éƒvï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Uï¿½^ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (_MovingDirection != targetDirection)
         {
             UTurn();
         }
     }
 
-    // ÅŠñ‚è‚Ì’Eoƒ|ƒCƒ“ƒg‚ğæ“¾
+    // ï¿½ÅŠï¿½ï¿½Ì’Eï¿½oï¿½|ï¿½Cï¿½ï¿½ï¿½gï¿½ï¿½ï¿½æ“¾
     public Transform GetNearestEscapePoint()
     {
-        // ’Eoƒ|ƒCƒ“ƒg‚ª‹ó‚¾‚Á‚½‚è—v‘f‚ª‚È‚©‚Á‚½ê‡‚Í•Ô‚·
+        // ï¿½Eï¿½oï¿½|ï¿½Cï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ó‚¾‚ï¿½ï¿½ï¿½ï¿½ï¿½vï¿½fï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½Í•Ô‚ï¿½
         if (_EscapePoints == null || _EscapePoints.Length == 0) return null;
 
         Transform nearest = null;
-        float nearestDistance = float.MaxValue; // ‰Šú’l‚Æ‚µ‚ÄÅ‘å’l‚ğ“ü‚ê‚Ä‚¨‚­
+        float nearestDistance = float.MaxValue; // ï¿½ï¿½ï¿½ï¿½ï¿½lï¿½Æ‚ï¿½ï¿½ÄÅ‘ï¿½lï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
 
-        // ˆê”Ô‹ß‚¢’Eoƒ|ƒCƒ“ƒg‚ğŒvZ‚·‚é
+        // ï¿½ï¿½Ô‹ß‚ï¿½ï¿½Eï¿½oï¿½|ï¿½Cï¿½ï¿½ï¿½gï¿½ï¿½ï¿½vï¿½Zï¿½ï¿½ï¿½ï¿½
         foreach (Transform escapePoint in _EscapePoints)
         {
             if (escapePoint == null) continue;
@@ -217,10 +218,10 @@ public class EnemyController : MonoBehaviour
         return nearest;
     }
 
-    // ’Eoƒ|ƒCƒ“ƒg‚ÉŒü‚©‚Á‚ÄˆÚ“®
+    // ï¿½Eï¿½oï¿½|ï¿½Cï¿½ï¿½ï¿½gï¿½ÉŒï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÄˆÚ“ï¿½
     public void MoveToEscapePoint()
     {
-        Transform escapePoint = NearestEscapePoint; // ˆê”Ô‹ß‚¢’Eoƒ|ƒCƒ“ƒg‚ğŠi”[
+        Transform escapePoint = NearestEscapePoint; // ï¿½ï¿½Ô‹ß‚ï¿½ï¿½Eï¿½oï¿½|ï¿½Cï¿½ï¿½ï¿½gï¿½ï¿½ï¿½iï¿½[
         if (escapePoint == null) return;
 
         Vector3 direction = (escapePoint.position - transform.position).normalized;
@@ -234,112 +235,112 @@ public class EnemyController : MonoBehaviour
 
         Move();
 
-        // ’Eoƒ|ƒCƒ“ƒg‚É“’B‚µ‚½‚©ƒ`ƒFƒbƒN
+        // ï¿½Eï¿½oï¿½|ï¿½Cï¿½ï¿½ï¿½gï¿½É“ï¿½ï¿½Bï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½Fï¿½bï¿½N
         //if (Vector3.Distance(transform.position, escapePoint.position) < 0.5f)
         if (isInExit) {
             EscapeSuccessfully();
         }
     }
 
-    // ’Eo¬Œ÷
+    // ï¿½Eï¿½oï¿½ï¿½ï¿½ï¿½
     private void EscapeSuccessfully()
     {
-        Debug.Log($"ƒGƒlƒ~[‚ª’Eo¬Œ÷I ¸‚Á‚½ƒAƒCƒeƒ€: ƒ[ƒh{_WordCount}, ƒp[ƒc{_PartCount}");
+        Debug.Log($"ï¿½Gï¿½lï¿½~ï¿½[ï¿½ï¿½ï¿½Eï¿½oï¿½ï¿½ï¿½ï¿½ï¿½I ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½Cï¿½eï¿½ï¿½: ï¿½ï¿½ï¿½[ï¿½h{_WordCount}, ï¿½pï¿½[ï¿½c{_PartCount}");
         Destroy(gameObject);
     }
 
-    // ƒvƒŒƒCƒ„[‚ÌUŒ‚‚ğó‚¯‚½
+    // ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ÌUï¿½ï¿½ï¿½ï¿½ï¿½ó‚¯‚ï¿½ï¿½ï¿½
     public void TakeAttackFromPlayer()
     {
-        // ƒAƒCƒeƒ€‚ğƒhƒƒbƒv
+        // ï¿½Aï¿½Cï¿½eï¿½ï¿½ï¿½ï¿½ï¿½hï¿½ï¿½ï¿½bï¿½v
         if (HasItems)
         {
             DropItems();
         }
 
-        Debug.Log("ƒGƒlƒ~[‚ª“|‚³‚ê‚½I");
+        Debug.Log("ï¿½Gï¿½lï¿½~ï¿½[ï¿½ï¿½ï¿½|ï¿½ï¿½ï¿½ê‚½ï¿½I");
         Destroy(gameObject);
     }
 
-    // ƒAƒCƒeƒ€ƒhƒƒbƒv
+    // ï¿½Aï¿½Cï¿½eï¿½ï¿½ï¿½hï¿½ï¿½ï¿½bï¿½v
     private void DropItems()
     {
-        // ƒvƒŒƒCƒ„[‚ÉƒAƒCƒeƒ€‚ğ“n‚·ˆ—i–¢À‘•j
+        // ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ÉƒAï¿½Cï¿½eï¿½ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½j
 
-        Debug.Log($"ƒhƒƒbƒv: ƒ[ƒh{_WordCount}, ƒp[ƒc{_PartCount}");
+        Debug.Log($"ï¿½hï¿½ï¿½ï¿½bï¿½v: ï¿½ï¿½ï¿½[ï¿½h{_WordCount}, ï¿½pï¿½[ï¿½c{_PartCount}");
     }
 
-    // ˆÚ“®‘¬“xİ’è
+    // ï¿½Ú“ï¿½ï¿½ï¿½ï¿½xï¿½İ’ï¿½
     public void SetMoveSpeed(float speedRatio)
     {
         CurrentMoveSpeed = _PlayerMoveSpeed * speedRatio;
     }
 
-    // ƒvƒƒpƒeƒB‚Åƒvƒ‰ƒCƒx[ƒg•Ï”‚ÉƒAƒNƒZƒX
+    // ï¿½vï¿½ï¿½ï¿½pï¿½eï¿½Bï¿½Åƒvï¿½ï¿½ï¿½Cï¿½xï¿½[ï¿½gï¿½Ïï¿½ï¿½ÉƒAï¿½Nï¿½Zï¿½X
     public bool IsInPlayerView => _IsInPlayerView;
 }
 
-// 3. ‚¤‚ë‚¤‚ëó‘Ô
+// 3. ï¿½ï¿½ï¿½ë‚¤ï¿½ï¿½ï¿½ï¿½
 public class WanderState : IEnemyState
 {
     public void Enter(EnemyController enemy)
     {
         enemy.SetMoveSpeed(enemy._WanderSpeedRatio);
-        Debug.Log("‚¤‚ë‚¤‚ëó‘ÔŠJn");
+        Debug.Log("ï¿½ï¿½ï¿½ë‚¤ï¿½ï¿½ï¿½ÔŠJï¿½n");
     }
 
     public void Update(EnemyController enemy)
     {
-        // ŠRƒ`ƒFƒbƒNiƒKƒL‚Ìê‡‚Ífalsej
+        // ï¿½Rï¿½`ï¿½Fï¿½bï¿½Nï¿½iï¿½Kï¿½Lï¿½Ìê‡ï¿½ï¿½falseï¿½j
         if (!HasGroundAhead(enemy))
         {
-            // ‚È‚É‚à–³‚©‚Á‚½‚çUƒ^[ƒ“
+            // ï¿½È‚É‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Uï¿½^ï¿½[ï¿½ï¿½
             enemy.UTurn();
         }
 
-        // ˆÚ“®ˆ—
+        // ï¿½Ú“ï¿½ï¿½ï¿½ï¿½ï¿½
         //enemy.CheckAndHandleCollision();
         enemy.Move();
     }
 
     public void Exit(EnemyController enemy)
     {
-        // ƒNƒŠ[ƒ“ƒAƒbƒvˆ—
+        // ï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Aï¿½bï¿½vï¿½ï¿½ï¿½ï¿½
     }
 
-    // “G‚Ì‹ü‚ÉG‚ê‚½‚Ìˆ—
+    // ï¿½Gï¿½Ìï¿½ï¿½ï¿½ï¿½ÉGï¿½ê‚½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
     public void OnVisionTrigger(Collider other, EnemyController enemy)
     {
-        // ‹ŠE‚ÉƒvƒŒƒCƒ„[‚ªŒ©‚¦‚½‚ç“¦‚°ó‘Ô‚ÉˆÚs
+        // ï¿½ï¿½ï¿½Eï¿½Éƒvï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ç“¦ï¿½ï¿½ï¿½ï¿½Ô‚ÉˆÚs
         if (other.gameObject.CompareTag("Player"))
         {
             enemy.TransitionToState(enemy._FleeState);
         }
 
-        // ‹ŠE‚ÉzÎ‚ªŒ©‚¦‚½‚ç‚Ù‚è‚Ù‚èó‘Ô‚ÉˆÚs
-        // ’ˆÓIIŠù‚É‚»‚ÌzÎ‚ª‘¼‚Ì“G‚Éƒ^[ƒQƒbƒg‚³‚ê‚Ä‚¢‚½‚ç–³‹‚·‚éˆ—‚ğ‚¢‚ê‚é‚±‚ÆI
+        // ï¿½ï¿½ï¿½Eï¿½Ézï¿½Î‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ù‚ï¿½Ù‚ï¿½ï¿½Ô‚ÉˆÚs
+        // ï¿½ï¿½ï¿½ÓIï¿½Iï¿½ï¿½ï¿½É‚ï¿½ï¿½Ìzï¿½Î‚ï¿½ï¿½ï¿½ï¿½Ì“Gï¿½Éƒ^ï¿½[ï¿½Qï¿½bï¿½gï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ç–³ï¿½ï¿½ï¿½ï¿½ï¿½éˆï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é‚±ï¿½ÆI
         if (other.gameObject.CompareTag("Crystal"))
         {
             enemy.TransitionToState(enemy._DigMovementState);
-            enemy._DigMovementState.SetTargetCrystal(other.gameObject.transform); // ƒNƒŠƒXƒ^ƒ‹‚ÌÀ•W‚ğŠi”[
+            enemy._DigMovementState.SetTargetCrystal(other.gameObject.transform); // ï¿½Nï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½Ìï¿½ï¿½Wï¿½ï¿½ï¿½iï¿½[
         }
     }
 
-    // “G–{‘Ì‚É“–‚½‚Á‚½‚Ìˆ—
+    // ï¿½Gï¿½{ï¿½Ì‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
     public void OnEnemyCollision(Collider other, EnemyController enemy)
     {
-        // ƒ_ƒ[ƒWˆ—
+        // ï¿½_ï¿½ï¿½ï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½
         if (other.gameObject.CompareTag("Player"))
         {
             enemy.TransitionToState(enemy._FleeState);
         }
 
-        // Uƒ^[ƒ“ˆ—
+        // Uï¿½^ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (other.gameObject.CompareTag("Wall"))
         {
             enemy.UTurn();
         }
-        // Uƒ^[ƒ“ˆ—
+        // Uï¿½^ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (other.gameObject.CompareTag("Enemy"))
         {
             enemy.UTurn();
@@ -351,63 +352,63 @@ public class WanderState : IEnemyState
 
     }
 
-    // ‘«Œ³‘O•û‚Ì’n–Ê—L–³‚ğƒŒƒCƒLƒƒƒXƒg‚ÅŠm”F
+    // ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½Ì’nï¿½Ê—Lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½Lï¿½ï¿½ï¿½Xï¿½gï¿½ÅŠmï¿½F
     private bool HasGroundAhead(EnemyController enemy)
     {
-        // ‘O•ûƒIƒtƒZƒbƒg‚ÆƒŒƒC’·‚³‚Íƒ[ƒJƒ‹’è”‚Å\•ª
-        const float forwardOffset = 0.5f;   // ‘Ì‚Ì­‚µ‘O
-        const float rayDownLength = 1.2f;   // ‘«Œ³‚Ü‚Å\•ª“Í‚­’·‚³
+        // ï¿½Oï¿½ï¿½ï¿½Iï¿½tï¿½Zï¿½bï¿½gï¿½Æƒï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½Íƒï¿½ï¿½[ï¿½Jï¿½ï¿½ï¿½è”ï¿½Å\ï¿½ï¿½
+        const float forwardOffset = 0.5f;   // ï¿½Ì‚Ìï¿½ï¿½ï¿½ï¿½O
+        const float rayDownLength = 1.2f;   // ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚Å\ï¿½ï¿½ï¿½Í‚ï¿½ï¿½ï¿½ï¿½ï¿½
 
         Vector3 origin = enemy.transform.position
                        + enemy.transform.right.normalized * forwardOffset
-                       + Vector3.up * 0.1f; // ’n–Ê‚ß‚è‚İ‘Îô‚Å­‚µã‚©‚ç
+                       + Vector3.up * 0.1f; // ï¿½nï¿½Ê‚ß‚èï¿½İ‘Îï¿½Åï¿½ï¿½ï¿½ï¿½ã‚©ï¿½ï¿½
         Vector3 dir = Vector3.down;
 
         bool hitSomething = Physics.Raycast(origin, dir, out RaycastHit hit, rayDownLength);
 
-        // unity editor‚Å•`‰æ
+        // unity editorï¿½Å•`ï¿½ï¿½
 #if UNITY_EDITOR
-        // ƒqƒbƒgó‹µ‚É‰‚¶‚ÄF•ª‚¯
+        // ï¿½qï¿½bï¿½gï¿½ó‹µ‚É‰ï¿½ï¿½ï¿½ï¿½ÄFï¿½ï¿½ï¿½ï¿½
         if (hitSomething)
         {
-            Color c = hit.collider.CompareTag("Ground") ? Color.green : new Color(1f, 0.8f, 0f); // Ground=—Î / ‚»‚êˆÈŠO=‰©
-            // ÀÛ‚Ìƒqƒbƒg‹——£‚Ü‚Å•`‰æ
+            Color c = hit.collider.CompareTag("Ground") ? Color.green : new Color(1f, 0.8f, 0f); // Ground=ï¿½ï¿½ / ï¿½ï¿½ï¿½ï¿½ÈŠO=ï¿½ï¿½
+            // ï¿½ï¿½ï¿½Û‚Ìƒqï¿½bï¿½gï¿½ï¿½ï¿½ï¿½ï¿½Ü‚Å•`ï¿½ï¿½
             Debug.DrawRay(origin, dir * hit.distance, c, 0f, false);
         }
         else
         {
-            // ‰½‚à–³‚¯‚ê‚ÎŠRFÔ‚ÅÅ‘å’·‚³‚Ü‚Å•`‰æ
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎŠRï¿½Fï¿½Ô‚ÅÅ‘å’·ï¿½ï¿½ï¿½Ü‚Å•`ï¿½ï¿½
             Debug.DrawRay(origin, dir * rayDownLength, Color.red, 0f, false);
         }
 #endif
 
         if (hitSomething)
         {
-            // ’n–Êƒ^ƒO‚ª Ground ‚Å‚ ‚é‚±‚Æ‚ğŠm”F
+            // ï¿½nï¿½Êƒ^ï¿½Oï¿½ï¿½ Ground ï¿½Å‚ï¿½ï¿½é‚±ï¿½Æ‚ï¿½ï¿½mï¿½F
             return hit.collider.CompareTag("Ground");
         }
 
-        // ‰½‚É‚à“–‚½‚ç‚È‚¯‚ê‚ÎŠR
+        // ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ÎŠR
         return false;
     }
 }
 
-// 4. “¦‚°ó‘Ô
+// 4. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 public class FleeState : IEnemyState
 {
     public void Enter(EnemyController enemy)
     {
-        enemy.SetMoveSpeed(enemy._FleeSpeedRatio); // ˆÚ“®ƒXƒs[ƒh‚ğXV
-        enemy.FleeFromPlayer();@// ¶‰E‚Ç‚¿‚ç‚É“¦‚°‚é‚×‚«‚©ŒvZ
-        Debug.Log("“¦‚°ó‘ÔŠJn");
+        enemy.SetMoveSpeed(enemy._FleeSpeedRatio); // ï¿½Ú“ï¿½ï¿½Xï¿½sï¿½[ï¿½hï¿½ï¿½ï¿½Xï¿½V
+        enemy.FleeFromPlayer();// ï¿½ï¿½ï¿½Eï¿½Ç‚ï¿½ï¿½ï¿½É“ï¿½ï¿½ï¿½ï¿½ï¿½×‚ï¿½ï¿½ï¿½ï¿½vï¿½Z
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÔŠJï¿½n");
     }
 
     public void Update(EnemyController enemy)
     {
-        // ƒvƒŒƒCƒ„[ƒJƒƒ‰‚©‚çŠO‚ê‚½ê‡
+        // ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ê‚½ï¿½ê‡
         if (!enemy.IsInPlayerView)
         {
-            // æ“¾”‚É‰‚¶‚Äó‘Ô‘JˆÚ
+            // ï¿½æ“¾ï¿½ï¿½ï¿½É‰ï¿½ï¿½ï¿½ï¿½Äï¿½Ô‘Jï¿½ï¿½
             if (enemy.ShouldEscape)
             {
                 enemy.TransitionToState(enemy._EscapeState);
@@ -419,25 +420,25 @@ public class FleeState : IEnemyState
             return;
         }
 
-        // ŠRƒ`ƒFƒbƒNiƒKƒL‚Ìê‡‚Ífalsej
+        // ï¿½Rï¿½`ï¿½Fï¿½bï¿½Nï¿½iï¿½Kï¿½Lï¿½Ìê‡ï¿½ï¿½falseï¿½j
         if (!HasGroundAhead(enemy))
         {
-            // ‚È‚É‚à–³‚©‚Á‚½‚çUƒ^[ƒ“
+            // ï¿½È‚É‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Uï¿½^ï¿½[ï¿½ï¿½
             enemy.UTurn();
         }
 
-        // ˆÚ“®ˆ—
+        // ï¿½Ú“ï¿½ï¿½ï¿½ï¿½ï¿½
         enemy.Move();
     }
 
     public void Exit(EnemyController enemy)
     {
-        // ƒNƒŠ[ƒ“ƒAƒbƒvˆ—
+        // ï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Aï¿½bï¿½vï¿½ï¿½ï¿½ï¿½
     }
 
     public void OnVisionTrigger(Collider other, EnemyController enemy)
     {
-        // ƒvƒŒƒCƒ„[‚ª‹ŠE‚É“ü‚Á‚½‚çUƒ^[ƒ“
+        // ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½Eï¿½É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Uï¿½^ï¿½[ï¿½ï¿½
         if (other.gameObject.CompareTag("Player"))
         {
             enemy.UTurn();
@@ -446,13 +447,13 @@ public class FleeState : IEnemyState
 
     public void OnEnemyCollision(Collider other, EnemyController enemy)
     {
-        // Uƒ^[ƒ“ˆ—
+        // Uï¿½^ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("GroundEdge"))
         {
             enemy.UTurn();
         }
 
-        // ƒvƒŒƒCƒ„[‚Ö‚Ìƒ_ƒ[ƒWˆ—
+        // ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Ö‚Ìƒ_ï¿½ï¿½ï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½
         if (other.gameObject.CompareTag("Player"))
         {
 
@@ -461,7 +462,7 @@ public class FleeState : IEnemyState
 
     public void OnBecameInvisible(EnemyController enemy)
     {
-        // ƒp[ƒc‚Ìæ“¾”‚É‚æ‚Á‚ÄƒXƒe[ƒg‚ğ•Ï‰»‚³‚¹‚é
+        // ï¿½pï¿½[ï¿½cï¿½Ìæ“¾ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½ÄƒXï¿½eï¿½[ï¿½gï¿½ï¿½Ï‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (enemy._PartCount < 5)
         {
             enemy.TransitionToState(enemy._WanderState);
@@ -472,74 +473,74 @@ public class FleeState : IEnemyState
         }
     }
 
-    // ‘«Œ³‘O•û‚Ì’n–Ê—L–³‚ğƒŒƒCƒLƒƒƒXƒg‚ÅŠm”F
+    // ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½Ì’nï¿½Ê—Lï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Cï¿½Lï¿½ï¿½ï¿½Xï¿½gï¿½ÅŠmï¿½F
     private bool HasGroundAhead(EnemyController enemy)
     {
-        // ‘O•ûƒIƒtƒZƒbƒg‚ÆƒŒƒC’·‚³‚Íƒ[ƒJƒ‹’è”‚Å\•ª
-        const float forwardOffset = 0.5f;   // ‘Ì‚Ì­‚µ‘O
-        const float rayDownLength = 1.2f;   // ‘«Œ³‚Ü‚Å\•ª“Í‚­’·‚³
+        // ï¿½Oï¿½ï¿½ï¿½Iï¿½tï¿½Zï¿½bï¿½gï¿½Æƒï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½Íƒï¿½ï¿½[ï¿½Jï¿½ï¿½ï¿½è”ï¿½Å\ï¿½ï¿½
+        const float forwardOffset = 0.5f;   // ï¿½Ì‚Ìï¿½ï¿½ï¿½ï¿½O
+        const float rayDownLength = 1.2f;   // ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚Å\ï¿½ï¿½ï¿½Í‚ï¿½ï¿½ï¿½ï¿½ï¿½
 
         Vector3 origin = enemy.transform.position
                        + enemy.transform.right.normalized * forwardOffset
-                       + Vector3.up * 0.1f; // ’n–Ê‚ß‚è‚İ‘Îô‚Å­‚µã‚©‚ç
+                       + Vector3.up * 0.1f; // ï¿½nï¿½Ê‚ß‚èï¿½İ‘Îï¿½Åï¿½ï¿½ï¿½ï¿½ã‚©ï¿½ï¿½
         Vector3 dir = Vector3.down;
 
         bool hitSomething = Physics.Raycast(origin, dir, out RaycastHit hit, rayDownLength);
 
-        // unity editor‚Å•`‰æ
+        // unity editorï¿½Å•`ï¿½ï¿½
 #if UNITY_EDITOR
-        // ƒqƒbƒgó‹µ‚É‰‚¶‚ÄF•ª‚¯
+        // ï¿½qï¿½bï¿½gï¿½ó‹µ‚É‰ï¿½ï¿½ï¿½ï¿½ÄFï¿½ï¿½ï¿½ï¿½
         if (hitSomething)
         {
-            Color c = hit.collider.CompareTag("Ground") ? Color.green : new Color(1f, 0.8f, 0f); // Ground=—Î / ‚»‚êˆÈŠO=‰©
-            // ÀÛ‚Ìƒqƒbƒg‹——£‚Ü‚Å•`‰æ
+            Color c = hit.collider.CompareTag("Ground") ? Color.green : new Color(1f, 0.8f, 0f); // Ground=ï¿½ï¿½ / ï¿½ï¿½ï¿½ï¿½ÈŠO=ï¿½ï¿½
+            // ï¿½ï¿½ï¿½Û‚Ìƒqï¿½bï¿½gï¿½ï¿½ï¿½ï¿½ï¿½Ü‚Å•`ï¿½ï¿½
             Debug.DrawRay(origin, dir * hit.distance, c, 0f, false);
         }
         else
         {
-            // ‰½‚à–³‚¯‚ê‚ÎŠRFÔ‚ÅÅ‘å’·‚³‚Ü‚Å•`‰æ
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎŠRï¿½Fï¿½Ô‚ÅÅ‘å’·ï¿½ï¿½ï¿½Ü‚Å•`ï¿½ï¿½
             Debug.DrawRay(origin, dir * rayDownLength, Color.red, 0f, false);
         }
 #endif
 
         if (hitSomething)
         {
-            // ’n–Êƒ^ƒO‚ª Ground ‚Å‚ ‚é‚±‚Æ‚ğŠm”F
+            // ï¿½nï¿½Êƒ^ï¿½Oï¿½ï¿½ Ground ï¿½Å‚ï¿½ï¿½é‚±ï¿½Æ‚ï¿½ï¿½mï¿½F
             return hit.collider.CompareTag("Ground");
         }
 
-        // ‰½‚É‚à“–‚½‚ç‚È‚¯‚ê‚ÎŠR
+        // ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ÎŠR
         return false;
     }
 }
 
-// 5. ‚Ù‚è‚Ù‚èˆÚsó‘Ô
+// 5. ï¿½Ù‚ï¿½Ù‚ï¿½Úsï¿½ï¿½ï¿½
 public class DigMovement : IEnemyState
 {
     private Transform _TargetCrystal;
 
     public void Enter(EnemyController enemy)
     {
-        enemy.SetMoveSpeed(enemy._WanderSpeedRatio); // Œ@‚Á‚Ä‚¢‚éŠÔ‚ÍˆÚ“®‚µ‚È‚¢
-        Debug.Log("‚Ù‚è‚Ù‚èˆÚsó‘ÔŠJn");
+        enemy.SetMoveSpeed(enemy._WanderSpeedRatio); // ï¿½@ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Ô‚ÍˆÚ“ï¿½ï¿½ï¿½ï¿½È‚ï¿½
+        Debug.Log("ï¿½Ù‚ï¿½Ù‚ï¿½Úsï¿½ï¿½ÔŠJï¿½n");
     }
 
     public void Update(EnemyController enemy)
     {
-        // ƒ^[ƒQƒbƒg‚ÌƒNƒŠƒXƒ^ƒ‹‚ª‘¶İ‚·‚é‚©ƒ`ƒFƒbƒN
+        // ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½ÌƒNï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ‚ï¿½ï¿½é‚©ï¿½`ï¿½Fï¿½bï¿½N
         if (_TargetCrystal == null)
         {
             enemy.TransitionToState(enemy._WanderState);
             return;
         }
 
-        // ƒNƒŠƒXƒ^ƒ‹‚Ü‚Ås‚­ˆ—i“G‚Ì‘O‚ÉƒNƒŠƒXƒ^ƒ‹‚ÍŠmÀ‚É‚ ‚é‚Ì‚ÅMoveŠÖ”‚Å—Ç‚¢j
+        // ï¿½Nï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½Ü‚Åsï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½Gï¿½Ì‘Oï¿½ÉƒNï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½ÍŠmï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½Ì‚ï¿½Moveï¿½Öï¿½ï¿½Å—Ç‚ï¿½ï¿½j
         enemy.Move();
 
-        // ƒGƒlƒ~[‚ªƒNƒŠƒXƒ^ƒ‹‚É“’…‚µ‚½‚çƒXƒe[ƒg‚ğ•ÏX
+        // ï¿½Gï¿½lï¿½~ï¿½[ï¿½ï¿½ï¿½Nï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½eï¿½[ï¿½gï¿½ï¿½ÏX
         if (HasReachedCrystal(enemy))
         {
-            enemy._DigState.SetTargetCrystal(_TargetCrystal); // ƒ^[ƒQƒbƒg‚ÌƒNƒŠƒXƒ^ƒ‹‚ğŸ‚Ì‚Ù‚è‚Ù‚èƒXƒe[ƒg‚É‚à“n‚·
+            enemy._DigState.SetTargetCrystal(_TargetCrystal); // ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½ÌƒNï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Ù‚ï¿½Ù‚ï¿½Xï¿½eï¿½[ï¿½gï¿½É‚ï¿½ï¿½nï¿½ï¿½
             enemy.TransitionToState(enemy._DigState);
 
         }
@@ -553,12 +554,12 @@ public class DigMovement : IEnemyState
     public void SetTargetCrystal(Transform crystalTransform)
     {
         _TargetCrystal = crystalTransform;
-        Debug.Log("ƒNƒŠƒXƒ^ƒ‹‚ÌÀ•W‚ğŠi”[II");
+        Debug.Log("ï¿½Nï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½Ìï¿½ï¿½Wï¿½ï¿½ï¿½iï¿½[ï¿½Iï¿½I");
     }
 
     private bool HasReachedCrystal(EnemyController enemy)
     {
-        // zÎ‚Æ‚Ì‹——£‚ğ‘ª‚èAˆê’è‚Ì’lˆÈ‰º‚¾‚Á‚½‚ç’…‚¢‚½”»’è‚É‚·‚é
+        // ï¿½zï¿½Î‚Æ‚Ì‹ï¿½ï¿½ï¿½ï¿½ğ‘ª‚ï¿½Aï¿½ï¿½ï¿½Ì’lï¿½È‰ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ç’…ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½
         float distance = Vector3.Distance(enemy.transform.position, _TargetCrystal.position);
         //Debug.Log(distance);
         return distance < 2.0f;
@@ -581,60 +582,60 @@ public class DigMovement : IEnemyState
     }
 }
 
-// 6. ‚Ù‚è‚Ù‚èó‘Ô
+// 6. ï¿½Ù‚ï¿½Ù‚ï¿½ï¿½ï¿½
 public class DigState : IEnemyState
 {
-    private const string LOG = "[Œ@í]";
+    private const string LOG = "[ï¿½@ï¿½ï¿½]";
 
     private Transform _TargetCrystal;
     private Minerals _TargetCrystalMinerals;
 
-    private float _DigAccumulator; // Œ@íDPS‚Ì—İÏi®”‰»‚Ì‚½‚ßj
+    private float _DigAccumulator; // ï¿½@ï¿½ï¿½DPSï¿½Ì—İÏiï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½ßj
 
     public void Enter(EnemyController enemy)
     {
         if (_TargetCrystal == null)
         {
-            Debug.LogWarning($"{LOG} Enter: ƒ^[ƒQƒbƒg–¢İ’è‚Ì‚½‚ßA‚¤‚ë‚¤‚ë‚Ö‘JˆÚ");
+            Debug.LogWarning($"{LOG} Enter: ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½ï¿½ï¿½İ’ï¿½Ì‚ï¿½ï¿½ßAï¿½ï¿½ï¿½ë‚¤ï¿½ï¿½Ö‘Jï¿½ï¿½");
             enemy.TransitionToState(enemy._WanderState);
             return;
         }
 
-        enemy.SetMoveSpeed(0f); // Œ@í’†‚ÍˆÚ“®’â~
+        enemy.SetMoveSpeed(0f); // ï¿½@ï¿½í’†ï¿½ÍˆÚ“ï¿½ï¿½ï¿½~
 
         if (!_TargetCrystal.TryGetComponent(out _TargetCrystalMinerals) || _TargetCrystalMinerals == null)
         {
-            Debug.LogWarning($"{LOG} Enter: Minerals ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB‚¤‚ë‚¤‚ë‚Ö‘JˆÚ");
+            Debug.LogWarning($"{LOG} Enter: Minerals ï¿½ï¿½ï¿½ï¿½ï¿½Â‚ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½Bï¿½ï¿½ï¿½ë‚¤ï¿½ï¿½Ö‘Jï¿½ï¿½");
             enemy.TransitionToState(enemy._WanderState);
             return;
         }
 
         _DigAccumulator = 0f;
-        Debug.Log($"{LOG} Enter: ƒNƒŠƒXƒ^ƒ‹='{_TargetCrystal.name}', maxHP={_TargetCrystalMinerals.maxHP}, wordCount={_TargetCrystalMinerals.wordCount}");
+        Debug.Log($"{LOG} Enter: ï¿½Nï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½='{_TargetCrystal.name}', maxHP={_TargetCrystalMinerals.maxHP}, wordCount={_TargetCrystalMinerals.wordCount}");
     }
 
     public void Update(EnemyController enemy)
     {
         if (enemy == null)
         {
-            Debug.LogError($"{LOG} Update: enemy ‚ª null ‚Å‚·");
+            Debug.LogError($"{LOG} Update: enemy ï¿½ï¿½ null ï¿½Å‚ï¿½");
             return;
         }
         if (_TargetCrystal == null)
         {
-            Debug.LogWarning($"{LOG} Update: ƒ^[ƒQƒbƒg‚ğŒ©¸‚¢‚Ü‚µ‚½B‚¤‚ë‚¤‚ë‚Ö‘JˆÚ");
+            Debug.LogWarning($"{LOG} Update: ï¿½^ï¿½[ï¿½Qï¿½bï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½Bï¿½ï¿½ï¿½ë‚¤ï¿½ï¿½Ö‘Jï¿½ï¿½");
             enemy.TransitionToState(enemy._WanderState);
             return;
         }
         if (_TargetCrystalMinerals == null &&
             (!_TargetCrystal.TryGetComponent(out _TargetCrystalMinerals) || _TargetCrystalMinerals == null))
         {
-            Debug.LogWarning($"{LOG} Update: Minerals ‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB‚¤‚ë‚¤‚ë‚Ö‘JˆÚ");
+            Debug.LogWarning($"{LOG} Update: Minerals ï¿½ï¿½ï¿½ï¿½ï¿½Â‚ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½Bï¿½ï¿½ï¿½ë‚¤ï¿½ï¿½Ö‘Jï¿½ï¿½");
             enemy.TransitionToState(enemy._WanderState);
             return;
         }
 
-        // Œ@íDPS ¨ ®”ƒ_ƒ[ƒW‚É‘©‚Ë‚é
+        // ï¿½@ï¿½ï¿½DPS ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½[ï¿½Wï¿½É‘ï¿½ï¿½Ë‚ï¿½
         float dps = enemy._PlayerDigSpeed * enemy._DigSpeedRatio;
         _DigAccumulator += dps * Time.deltaTime;
 
@@ -643,38 +644,38 @@ public class DigState : IEnemyState
         {
             _DigAccumulator -= damage;
 
-            ItemManager receiver = enemy._Inventory; // ó‚¯æ‚èæi“GƒCƒ“ƒxƒ“ƒgƒŠj
+            ItemManager receiver = enemy._Inventory; // ï¿½ó‚¯ï¿½ï¿½ï¿½iï¿½Gï¿½Cï¿½ï¿½ï¿½xï¿½ï¿½ï¿½gï¿½ï¿½ï¿½j
             int dropped = _TargetCrystalMinerals.Mine(damage, receiver);
 
             if (dropped > 0)
             {
-                enemy._WordCount += dropped; // ƒƒ^—pƒJƒEƒ“ƒg‚ğXViUI‚â“¦‘–”»’èj
-                Debug.Log($"{LOG} ¡‰ñ‚Ìƒhƒƒbƒv”={dropped} / “G‚ÌŠƒ[ƒh‡Œv={enemy._WordCount}");
+                enemy._WordCount += dropped; // ï¿½ï¿½ï¿½^ï¿½pï¿½Jï¿½Eï¿½ï¿½ï¿½gï¿½ï¿½ï¿½Xï¿½Vï¿½iUIï¿½â“¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½j
+                Debug.Log($"{LOG} ï¿½ï¿½ï¿½ï¿½Ìƒhï¿½ï¿½ï¿½bï¿½vï¿½ï¿½={dropped} / ï¿½Gï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½hï¿½ï¿½ï¿½v={enemy._WordCount}");
             }
         }
 
-        // æ“¾”‚µ‚«‚¢’l‚Å’Eo‚Ö
+        // ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½lï¿½Å’Eï¿½oï¿½ï¿½
         if (enemy.ShouldEscape)
         {
-            Debug.Log($"{LOG} ‚µ‚«‚¢’l“’BiWord={enemy._WordCount}, Part={enemy._PartCount}j¨ ’Eo‚Ö‘JˆÚ");
+            Debug.Log($"{LOG} ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½lï¿½ï¿½ï¿½Bï¿½iWord={enemy._WordCount}, Part={enemy._PartCount}ï¿½jï¿½ï¿½ ï¿½Eï¿½oï¿½Ö‘Jï¿½ï¿½");
             enemy.TransitionToState(enemy._EscapeState);
             return;
         }
 
-        // ”j‰óÏ‚İ‚È‚çI—¹
+        // ï¿½jï¿½ï¿½Ï‚İ‚È‚ï¿½Iï¿½ï¿½
         if (_TargetCrystalMinerals.GetCurrentHP() <= 0)
         {
-            Debug.Log($"{LOG} ƒNƒŠƒXƒ^ƒ‹”j‰ó ¨ ‚¤‚ë‚¤‚ë‚Ö‘JˆÚ");
+            Debug.Log($"{LOG} ï¿½Nï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½ï¿½jï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ë‚¤ï¿½ï¿½Ö‘Jï¿½ï¿½");
             enemy.TransitionToState(enemy._WanderState);
             return;
         }
 
-        Debug.Log($"<color=#0000FF>Word={enemy._WordCount}, ƒNƒŠƒXƒ^ƒ‹HP={_TargetCrystalMinerals.GetCurrentHP()} </color>");
+        Debug.Log($"<color=#0000FF>Word={enemy._WordCount}, ï¿½Nï¿½ï¿½ï¿½Xï¿½^ï¿½ï¿½HP={_TargetCrystalMinerals.GetCurrentHP()} </color>");
     }
 
     public void Exit(EnemyController enemy)
     {
-        Debug.Log($"{LOG} Exit: Œ@í‚ğI—¹‚µ‚Ü‚·");
+        Debug.Log($"{LOG} Exit: ï¿½@ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½");
         _TargetCrystal = null;
         _TargetCrystalMinerals = null;
         _DigAccumulator = 0f;
@@ -686,7 +687,7 @@ public class DigState : IEnemyState
         Debug.Log($"{LOG} SetTargetCrystal: {(_TargetCrystal ? _TargetCrystal.name : "NULL")}");
     }
 
-    // ---- IEnemyState •K{ƒƒ\ƒbƒhi•K—v‚È‚çÀ‘•‚ğ’Ç‰Áj----
+    // ---- IEnemyState ï¿½Kï¿½{ï¿½ï¿½ï¿½\ï¿½bï¿½hï¿½iï¿½Kï¿½vï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç‰ï¿½ï¿½j----
     public void OnVisionTrigger(Collider other, EnemyController enemy)
     {
         //Debug.Log($"{LOG} OnVisionTrigger: tag={other.tag}");
@@ -700,33 +701,33 @@ public class DigState : IEnemyState
 
     public void OnBecameInvisible(EnemyController enemy)
     {
-        Debug.Log($"{LOG} OnBecameInvisible: ƒJƒƒ‰ŠO‚É‚È‚è‚Ü‚µ‚½");
+        Debug.Log($"{LOG} OnBecameInvisible: ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½É‚È‚ï¿½Ü‚ï¿½ï¿½ï¿½");
     }
 }
-// 7. ’Eoó‘Ô
+// 7. ï¿½Eï¿½oï¿½ï¿½ï¿½
 public class EscapeState : IEnemyState
 {
     public void Enter(EnemyController enemy)
     {
-        enemy.SetMoveSpeed(enemy._EscapeSpeedRatio); // ˆÚ“®ƒXƒs[ƒh‚ğXV
-        Debug.Log("’Eoó‘ÔŠJn");
+        enemy.SetMoveSpeed(enemy._EscapeSpeedRatio); // ï¿½Ú“ï¿½ï¿½Xï¿½sï¿½[ï¿½hï¿½ï¿½ï¿½Xï¿½V
+        Debug.Log("ï¿½Eï¿½oï¿½ï¿½ÔŠJï¿½n");
     }
 
     public void Update(EnemyController enemy)
     {
-        // ’Eoƒ|ƒCƒ“ƒg‚ÉŒü‚©‚Á‚ÄˆÚ“®AŠÖ”‚Ì’†‚Å“’Bˆ—‚âˆê”Ô‹ß‚¢’Eoƒ|ƒCƒ“ƒg‚ÌŒvZ‚ğ‚µ‚Ä‚¢‚é
+        // ï¿½Eï¿½oï¿½|ï¿½Cï¿½ï¿½ï¿½gï¿½ÉŒï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÄˆÚ“ï¿½ï¿½Aï¿½Öï¿½ï¿½Ì’ï¿½ï¿½Å“ï¿½ï¿½Bï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô‹ß‚ï¿½ï¿½Eï¿½oï¿½|ï¿½Cï¿½ï¿½ï¿½gï¿½ÌŒvï¿½Zï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
         enemy.MoveToEscapePoint();
     }
 
     public void Exit(EnemyController enemy)
     {
-        // ƒNƒŠ[ƒ“ƒAƒbƒvˆ—
+        // ï¿½Nï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Aï¿½bï¿½vï¿½ï¿½ï¿½ï¿½
     }
 
 
     public void OnVisionTrigger(Collider other, EnemyController enemy)
     {
-        // ‹ŠE‚ÉƒvƒŒƒCƒ„[‚ªŒ©‚¦‚½‚ç“¦‚°ó‘Ô‚ÉˆÚs
+        // ï¿½ï¿½ï¿½Eï¿½Éƒvï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ç“¦ï¿½ï¿½ï¿½ï¿½Ô‚ÉˆÚs
         if (other.gameObject.CompareTag("Player"))
         {
             enemy.TransitionToState(enemy._FleeState);
